@@ -2,52 +2,56 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<!-- VERY IMPORTANT FOR MOBILE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LoveOS ❤️</title>
+<title>For Sanya ❤️</title>
 
 <style>
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:#020617;
-color:white;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ff4d6d,#ff8fab);
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+overflow:hidden;
 }
 
 .card{
-background:#020617;
-padding:25px;
-border-radius:20px;
+background:white;
+border-radius:25px;
+padding:30px 20px;
 text-align:center;
-box-shadow:0 0 40px black;
 width:90%;
-max-width:400px;
+max-width:380px;
+box-shadow:0 10px 40px rgba(0,0,0,.3);
+animation:zoom .8s;
 }
 
-h1{font-size:28px}
+@keyframes zoom{
+from{transform:scale(.5)}
+}
 
-p{font-size:18px}
+h1{color:#ff4d6d}
+
+#text{
+min-height:60px;
+font-size:18px;
+}
 
 button{
-padding:12px 22px;
 border:none;
-border-radius:20px;
-background:#22c55e;
-margin:10px;
+padding:12px 22px;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
 font-size:16px;
+margin:8px;
 }
-
-#main{display:none}
 
 .heart{
 position:fixed;
-top:-10px;
 animation:fall 4s linear;
 }
 
@@ -56,40 +60,35 @@ to{transform:translateY(110vh)}
 }
 
 #popup{
-display:none;
 position:fixed;
 inset:0;
 background:rgba(0,0,0,.6);
+display:none;
 justify-content:center;
 align-items:center;
 }
 
 #popup div{
 background:white;
-color:black;
 padding:25px;
-border-radius:15px;
+border-radius:20px;
 text-align:center;
 width:80%;
+animation:zoom .4s;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="boot">
-<h1>LoveOS ❤️</h1>
-<button onclick="start()">Open Message 🔐</button>
-</div>
-
 <div class="card" id="main">
+
 <h1>Sanya ❤️</h1>
 
-<p id="msg"></p>
+<div id="text"></div>
 
-<button onclick="love()">Send Love ❤️</button><br>
+<button onclick="love()">Send Love 💖</button>
 <button onclick="proposal()">Propose 💍</button>
-<button onclick="cert()">Certificate 🏆</button>
 
 </div>
 
@@ -98,30 +97,32 @@ width:80%;
 </div>
 
 <script>
-function start(){
-boot.style.display="none";
-main.style.display="block";
-msg.innerText="You are my favorite notification every day.\n\nFrom Sahil Singh 💖";
+let msg="You are my favorite notification every day.\nI smile every time I think of you.\n\nFrom Sahil 💖";
+let i=0;
+
+function type(){
+if(i<msg.length){
+text.innerHTML+=msg[i]=="\n"?"<br>":msg[i];
+i++;
+setTimeout(type,50);
 }
+}
+type();
 
 function love(){
-for(let i=0;i<30;i++){
+for(let i=0;i<25;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
 h.style.left=Math.random()*100+"vw";
+h.style.top="-10px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),4000);
 }
 }
 
 function proposal(){
-popupText.innerHTML="💍 Sanya<br><brWill you be mine forever?<br><br— Sahil";
-popup.style.display="flex";
-}
-
-function cert(){
-popupText.innerHTML="🏆 Forever Love Activated ❤️<br><brIssued By: Sahil Singh";
+popupText.innerHTML="💍 Sanya<br><brWill you be mine forever?<br><br❤️ Sahil";
 popup.style.display="flex";
 }
 </script>
