@@ -2,12 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- VERY IMPORTANT FOR MOBILE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LoveOS ❤️</title>
 
 <style>
 body{
 margin:0;
-font-family:Arial;
+font-family:Arial, sans-serif;
 background:#020617;
 color:white;
 display:flex;
@@ -18,20 +22,25 @@ height:100vh;
 
 .card{
 background:#020617;
-padding:40px;
+padding:25px;
 border-radius:20px;
 text-align:center;
 box-shadow:0 0 40px black;
-width:400px;
+width:90%;
+max-width:400px;
 }
 
+h1{font-size:28px}
+
+p{font-size:18px}
+
 button{
-padding:10px 20px;
+padding:12px 22px;
 border:none;
 border-radius:20px;
 background:#22c55e;
-margin:8px;
-cursor:pointer;
+margin:10px;
+font-size:16px;
 }
 
 #main{display:none}
@@ -61,6 +70,7 @@ color:black;
 padding:25px;
 border-radius:15px;
 text-align:center;
+width:80%;
 }
 </style>
 </head>
@@ -68,16 +78,16 @@ text-align:center;
 <body>
 
 <div class="card" id="boot">
-<h2>💻 LoveOS Boot</h2>
+<h1>LoveOS ❤️</h1>
 <button onclick="start()">Open Message 🔐</button>
 </div>
 
 <div class="card" id="main">
-<h2>Sanya ❤️</h2>
+<h1>Sanya ❤️</h1>
 
 <p id="msg"></p>
 
-<button onclick="love()">Send Love ❤️</button>
+<button onclick="love()">Send Love ❤️</button><br>
 <button onclick="proposal()">Propose 💍</button>
 <button onclick="cert()">Certificate 🏆</button>
 
@@ -95,7 +105,7 @@ msg.innerText="You are my favorite notification every day.\n\nFrom Sahil Singh �
 }
 
 function love(){
-for(let i=0;i<40;i++){
+for(let i=0;i<30;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
@@ -106,7 +116,7 @@ setTimeout(()=>h.remove(),4000);
 }
 
 function proposal(){
-popupText.innerHTML="💍 Sanya<br><br>Will you be mine forever?<br><br— Sahil";
+popupText.innerHTML="💍 Sanya<br><brWill you be mine forever?<br><br— Sahil";
 popup.style.display="flex";
 }
 
