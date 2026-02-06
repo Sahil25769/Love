@@ -29,4 +29,204 @@ align-items:center;
 background:#020617;
 padding:40px;
 border-radius:20px;
-width:70
+width:700px;
+max-width:95%;
+text-align:center;
+box-shadow:0 0 40px #000;
+}
+
+.light .card{background:white;}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#22c55e;
+font-weight:bold;
+cursor:pointer;
+margin:8px;
+}
+
+#letter{display:none}
+
+.counter{margin:5px}
+
+#text{
+text-align:left;
+white-space:pre-line;
+line-height:1.6;
+font-size:18px;
+}
+
+.cursor{
+width:10px;
+background:#22c55e;
+display:inline-block;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{50%{opacity:0}}
+
+.heart{
+position:fixed;
+top:-20px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh);opacity:0}
+}
+
+#popup{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+justify-content:center;
+align-items:center;
+}
+
+#popup div{
+background:white;
+color:black;
+padding:30px;
+border-radius:15px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="center" id="start">
+<div class="card">
+<h1>💻 LoveOS Ultra Boot</h1>
+<div id="scan"></div><br>
+<button onclick="boot()">Initialize Secure Message 🔐</button>
+</div>
+</div>
+
+<div class="center" id="letter">
+<div class="card">
+
+<h1>Terminal → Sanya_Message.exe</h1>
+
+<div class="counter">Love: <span id="c1">0</span>%</div>
+<div class="counter">Care: <span id="c2">0</span></div>
+<div class="counter">Support: <span id="c3">0</span></div>
+
+<br>
+
+<div id="text"></div><span class="cursor"></span>
+
+<br><br>
+
+<button onclick="secret()">Hidden Note 💌</button>
+<button onclick="burst(this)">Send Love ❤️</button>
+<button onclick="cert()">Certificate 🏆</button>
+<button onclick="proposal()">Propose 💍</button>
+<button onclick="toggleMode()">Toggle Mode 🌙</button>
+
+</div>
+</div>
+
+<div id="popup" onclick="this.style.display='none'">
+<div id="popupText"></div>
+</div>
+
+<script>
+const lines=[
+"> Booting LoveOS...",
+"> Loading emotions...",
+"> Checking heartbeat...",
+"> Sanya Connected ❤️"
+];
+
+let s=0;
+function scan(){
+if(s<lines.length){
+scanDiv.innerHTML+=lines[s]+"<br>";
+s++;
+setTimeout(scan,600);
+}
+}
+const scanDiv=document.getElementById("scan");
+scan();
+
+function boot(){
+start.style.display="none";
+letter.style.display="flex";
+counter();
+type();
+}
+
+function counter(){
+let a=0,b=0,c=0;
+setInterval(()=>{
+if(a<100)c1.innerText=++a;
+c2.innerText=b+=5;
+c3.innerText=++c;
+},50);
+}
+
+const msg=`
+Result:
+
+Sanya ❤️
+
+"You are my favorite notification every day."
+
+From Sahil Singh 💖
+`;
+
+let i=0;
+function type(){
+if(i<msg.length){
+text.innerHTML+=msg.charAt(i++);
+setTimeout(type,35);
+}
+}
+
+function secret(){
+popupText.innerHTML="Hidden Note 💗<br><br>I choose you, always ❤️";
+popup.style.display="flex";
+}
+
+function burst(btn){
+btn.innerText="Love Sent 💖";
+for(let i=0;i<60;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*30)+"px";
+h.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+}
+
+function cert(){
+popupText.innerHTML=
+"🏆 Certificate Generated<br><br>"+
+"Forever Love Activated ❤️<br>"+
+"Issued By: Sahil Singh 💻";
+popup.style.display="flex";
+}
+
+function proposal(){
+popupText.innerHTML=
+"💍 Proposal Request<br><br>"+
+"Sanya ❤️<br>"+
+"Will you be mine forever?<br><br>"+
+"— Sahil";
+popup.style.display="flex";
+}
+
+function toggleMode(){
+document.body.classList.toggle("light");
+}
+</script>
+
+</body>
+</html>
