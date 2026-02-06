@@ -21,16 +21,11 @@ overflow:hidden;
 .card{
 background:white;
 border-radius:25px;
-padding:30px 20px;
+padding:25px;
 text-align:center;
 width:90%;
 max-width:380px;
 box-shadow:0 10px 40px rgba(0,0,0,.3);
-animation:zoom .8s;
-}
-
-@keyframes zoom{
-from{transform:scale(.5)}
 }
 
 h1{color:#ff4d6d}
@@ -38,6 +33,7 @@ h1{color:#ff4d6d}
 #text{
 min-height:60px;
 font-size:18px;
+margin-bottom:15px;
 }
 
 button{
@@ -48,15 +44,7 @@ background:#ff4d6d;
 color:white;
 font-size:16px;
 margin:8px;
-}
-
-.heart{
-position:fixed;
-animation:fall 4s linear;
-}
-
-@keyframes fall{
-to{transform:translateY(110vh)}
+cursor:pointer;
 }
 
 #popup{
@@ -68,32 +56,80 @@ justify-content:center;
 align-items:center;
 }
 
-#popup div{
+#popupBox{
 background:white;
 padding:25px;
 border-radius:20px;
 text-align:center;
 width:80%;
-animation:zoom .4s;
 }
+
+#no{
+background:#777;
+position:absolute;
+}
+
+.heart{
+position:fixed;
+animation:fall 4s linear;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh)}
+}
+
+#certificate{
+display:none;
+position:fixed;
+inset:0;
+background:white;
+padding:30px;
+text-align:center;
+}
+
+.cert{
+border:4px dashed #ff4d6d;
+padding:30px;
+border-radius:20px;
+height:100%;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="card" id="main">
+<div class="card">
 
 <h1>Sanya ❤️</h1>
 
 <div id="text"></div>
 
-<button onclick="love()">Send Love 💖</button>
 <button onclick="proposal()">Propose 💍</button>
 
 </div>
 
-<div id="popup" onclick="this.style.display='none'">
-<div id="popupText"></div>
+<div id="popup">
+<div id="popupBox">
+<h2>Will you be mine forever? 💍</h2>
+<button onclick="yes()">YES ❤️</button>
+<button id="no" onmouseover="move()">NO 😅</button>
+</div>
+</div>
+
+<div id="certificate">
+<div class="cert">
+<h1>💖 Love Certificate 💖</h1>
+<p>This certifies that</p>
+<h2>Sanya ❤️ Sahil</h2>
+<p>are officially in love forever.</p>
+
+<p>You are my favorite notification every day.</p>
+
+<h3>From Sahil 💕</h3>
+
+<button onclick="location.reload()">Restart 🔁</button>
+</div>
 </div>
 
 <script>
@@ -109,8 +145,20 @@ setTimeout(type,50);
 }
 type();
 
-function love(){
-for(let i=0;i<25;i++){
+function proposal(){
+popup.style.display="flex";
+}
+
+function move(){
+no.style.left=Math.random()*70+"%";
+no.style.top=Math.random()*70+"%";
+}
+
+function yes(){
+popup.style.display="none";
+certificate.style.display="block";
+
+for(let i=0;i<30;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
@@ -119,11 +167,6 @@ h.style.top="-10px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),4000);
 }
-}
-
-function proposal(){
-popupText.innerHTML="💍 Sanya<br><brWill you be mine forever?<br><br❤️ Sahil";
-popup.style.display="flex";
 }
 </script>
 
