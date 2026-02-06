@@ -4,69 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For Sanya ❤️</title>
+<title>Love by Sahil ❤️</title>
 
 <style>
 body{
 margin:0;
-font-family:'Segoe UI',sans-serif;
+font-family:Arial;
 background:linear-gradient(135deg,#ff4d6d,#ff8fab);
-display:flex;
-justify-content:center;
-align-items:center;
 height:100vh;
 overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.card{
+.page{
+display:none;
 background:white;
-border-radius:25px;
 padding:25px;
-text-align:center;
+border-radius:25px;
 width:90%;
 max-width:380px;
+text-align:center;
 box-shadow:0 10px 40px rgba(0,0,0,.3);
 }
 
-h1{color:#ff4d6d}
-
-#text{
-min-height:60px;
-font-size:18px;
-margin-bottom:15px;
-}
+.show{display:block}
 
 button{
 border:none;
-padding:12px 22px;
+padding:12px 25px;
 border-radius:30px;
 background:#ff4d6d;
 color:white;
 font-size:16px;
-margin:8px;
+margin:10px;
 cursor:pointer;
-}
-
-#popup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.6);
-display:none;
-justify-content:center;
-align-items:center;
-}
-
-#popupBox{
-background:white;
-padding:25px;
-border-radius:20px;
-text-align:center;
-width:80%;
 }
 
 #no{
 background:#777;
 position:absolute;
+}
+
+img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+margin:10px 0;
+border:3px solid #ff4d6d;
 }
 
 .heart{
@@ -78,20 +65,10 @@ animation:fall 4s linear;
 to{transform:translateY(110vh)}
 }
 
-#certificate{
-display:none;
-position:fixed;
-inset:0;
-background:white;
-padding:30px;
-text-align:center;
-}
-
 .cert{
-border:4px dashed #ff4d6d;
-padding:30px;
-border-radius:20px;
-height:100%;
+border:3px dashed #ff4d6d;
+padding:20px;
+border-radius:15px;
 }
 
 </style>
@@ -99,54 +76,58 @@ height:100%;
 
 <body>
 
-<div class="card">
+<!-- PAGE 1 -->
+<div class="page show" id="p1">
+<h2>Sanya ❤️</h2>
 
-<h1>Sanya ❤️</h1>
+<!-- PHOTO -->
+<img src="photo.jpeg">
 
-<div id="text"></div>
+<p id="type"></p>
 
-<button onclick="proposal()">Propose 💍</button>
-
+<button onclick="next(2)">Next ➡</button>
 </div>
 
-<div id="popup">
-<div id="popupBox">
-<h2>Will you be mine forever? 💍</h2>
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+<h2>Will You Be Mine Forever? 💍</h2>
 <button onclick="yes()">YES ❤️</button>
 <button id="no" onmouseover="move()">NO 😅</button>
 </div>
-</div>
 
-<div id="certificate">
+<!-- PAGE 3 -->
+<div class="page" id="p3">
 <div class="cert">
-<h1>💖 Love Certificate 💖</h1>
+<h2>💖 Love Certificate 💖</h2>
 <p>This certifies that</p>
-<h2>Sanya ❤️ Sahil</h2>
+<h3>Sanya ❤️ Sahil</h3>
 <p>are officially in love forever.</p>
 
 <p>You are my favorite notification every day.</p>
 
-<h3>From Sahil 💕</h3>
+<h4>From Sahil 💕</h4>
 
 <button onclick="location.reload()">Restart 🔁</button>
 </div>
 </div>
 
 <script>
-let msg="You are my favorite notification every day.\nI smile every time I think of you.\n\nFrom Sahil 💖";
+
+let text="You make my world brighter every day.\nI smile whenever I think of you.\n\nFrom Sahil ❤️";
 let i=0;
 
-function type(){
-if(i<msg.length){
-text.innerHTML+=msg[i]=="\n"?"<br>":msg[i];
+function typing(){
+if(i<text.length){
+type.innerHTML+=text[i]=="\n"?"<br>":text[i];
 i++;
-setTimeout(type,50);
+setTimeout(typing,50);
 }
 }
-type();
+typing();
 
-function proposal(){
-popup.style.display="flex";
+function next(n){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("show"));
+document.getElementById("p"+n).classList.add("show");
 }
 
 function move(){
@@ -155,10 +136,8 @@ no.style.top=Math.random()*70+"%";
 }
 
 function yes(){
-popup.style.display="none";
-certificate.style.display="block";
-
-for(let i=0;i<30;i++){
+next(3);
+for(let i=0;i<40;i++){
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤️";
@@ -168,6 +147,7 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),4000);
 }
 }
+
 </script>
 
 </body>
